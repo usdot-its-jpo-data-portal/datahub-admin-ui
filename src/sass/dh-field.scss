@@ -1,0 +1,77 @@
+.dh-field--wrapper {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-content: center;
+  align-items: center;
+  margin-left: 0;
+  margin-right: units(1);
+  margin-top: units(0.5);
+  margin-bottom: units(0.5);
+  overflow: hidden;
+  .dh-field--label {
+    align-self: flex-end;
+    font-size: units(1.5);
+    font-weight: normal;
+    color: $g-color-dark-gray;
+    margin-right: units(0.5);
+  }
+  .dh-field--value {
+    color: $g-color-black;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    -ms-word-break: break-all;
+    word-break: break-word;
+    -ms-hyphens: auto;
+    -moz-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+  }
+  .dh-field--value-smaller {
+    font-size: units(1);
+  }
+  .dh-field--value-small {
+    font-size: units(1.5);
+  }
+  .dh-field--value-medium {
+    font-size: units(2);
+  }
+  .dh-field--value-large {
+    font-size: units(2.5);
+  }
+  .dh-field--value-larger {
+    font-size: units(3);
+  }
+  .dh-field--value-normal {
+    font-weight: normal;
+  }
+  .dh-field--value-bold {
+    font-weight: bold;
+  }
+
+  .dh-field--value-blue {
+    color: darken($g-color-blue, 20%);
+  }
+  .dh-field--value-navy {
+    color: $g-color-navy;
+  }
+  .dh-field--value-green {
+    color: $g-color-green;
+  }
+  .dh-field--value-gray {
+    color: $g-color-dark-gray;
+  }
+  .dh-field--value-lightgray {
+    color: $g-color-gray;
+  }
+  .dh-field--value-black {
+    color: $g-color-black;
+  }
+  .dh-field--value-red {
+    color: $g-color-red;
+  }
+  .dh-field--value-shadow {
+    text-shadow: 1px 1px lighten($g-color-gray, 10%);
+  }
+}
