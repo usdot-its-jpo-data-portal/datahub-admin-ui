@@ -1,6 +1,6 @@
 export default {
     validResponse(response) {
-      return response && response.status && response.status === 200 && response.data && response.data.code == 200;
+      return response && response.status && response.status === 200 && response.data && [200, 204].includes(response.data.code);
     },
     getErrorMessages(response) {
       if (!this.validResponse(response)) {
