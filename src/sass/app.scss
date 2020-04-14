@@ -1,0 +1,7 @@
+.dh-app-wrapper {
+  background-color: lighten($g-color-background, 5%);
+  .dh-app-router-view {
+    margin-top: units(3);
+    padding-top: units(0.5);
+  }
+}

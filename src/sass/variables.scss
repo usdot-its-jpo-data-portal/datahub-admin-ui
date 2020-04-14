@@ -1,0 +1,14 @@
+$g-color-white: #FFFFFF;
+$g-color-black: #000000;
+$g-color-navy: #162E51;
+$g-color-gray: #CCCCCC;
+$g-color-dark-gray: #808080;
+$g-color-green: green;
+$g-color-red: red;
+$g-color-dark-red: darken(red, 15%);
+$g-color-blue: blue;
+$g-color-orange: orange;
+
+$g-color-background: lighten($g-color-gray, 15%);
+
+$dh-header-height: units(7);
