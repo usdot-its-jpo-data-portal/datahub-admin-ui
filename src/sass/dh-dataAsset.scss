@@ -1,0 +1,16 @@
+.dataasset_wrapper{
+  background-color: $g-color-white;
+  border: solid 1px $g-color-gray;
+  border-radius: units(1);
+  margin: units(1);
+  padding: units(1);
+  box-shadow: 0 1px 1px lighten($g-color-black, 30%);
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.3s;
+  width: units('tablet');
+
+  &:hover {
+    box-shadow: 0 3px 3px lighten($g-color-black, 30%);
+    transform: translateY(-2px);
+  }
+}

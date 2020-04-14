@@ -1,0 +1,15 @@
+.dataassets_wrapper {
+  background-color: $g-color-background;
+  .dataassets_controls {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: units(3);
+    padding-top: units(1);
+    padding-left: units(1.5);
+    padding-right: units(1.5);
+    padding-bottom: units(0.5);
+  }
+}
