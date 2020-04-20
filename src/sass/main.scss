@@ -9,8 +9,10 @@ $theme-show-notifications: false;
 @import './dh-field.scss';
 @import './dh-dataAsset.scss';
 @import './dh-project.scss';
+@import './dh-dataType.scss';
 @import './dataassets/dataassets.scss';
 @import './projects/projects.scss';
+@import './datatypes/datatypes.scss';
 
 html, body {
   background-color: $g-color-background;

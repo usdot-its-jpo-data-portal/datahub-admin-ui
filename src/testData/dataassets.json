@@ -1,0 +1,52 @@
+[
+  {
+      "id": "htmy-j8sh",
+      "name": "Vehicle Awareness Device Data from Leesburg, Virginia",
+      "lastUpdate": 1584980984000,
+      "dhId": "scgc-htmy-j8sh",
+      "dhLastUpdate": 1586817359000,
+      "dhSourceName": "scgc",
+      "dhProjects": ["cee5a2e2-3c69-4aca-a232-a67242f4d6b7","9c0c977a-c59f-4cba-8466-d28347c43297","f7336237-26bb-4d53-aad9-1aa0857cc6a5"],
+      "dhDataTypes": ["cd9a0b8c-e457-47f1-a19c-7e47283be6ef","70edad20-4bb8-4037-a5d3-229cc3fad488","09770deb-6f56-4e05-8c70-d11c32e99de1"]
+  },
+  {
+      "id": "9v5g-t8u8",
+      "name": "Seattle Freeway Travel Times",
+      "lastUpdate": 1584980988000,
+      "dhId": "scgc-9v5g-t8u8",
+      "dhLastUpdate": 1586490652000,
+      "dhSourceName": "scgc",
+      "dhProjects": ["cee5a2e2-3c69-4aca-a232-a67242f4d6b7"],
+      "dhDataTypes": ["cd9a0b8c-e457-47f1-a19c-7e47283be6ef"]
+  },
+  {
+      "id": "r2cx-w8z5",
+      "name": "Florida DOT Orlando ITS World Congress Vehicle Awareness Device",
+      "lastUpdate": 1584980985000,
+      "dhId": "scgc-r2cx-w8z5",
+      "dhLastUpdate": 1586410429000,
+      "dhSourceName": "scgc",
+      "dhProjects": [],
+      "dhDataTypes": ["cd9a0b8c-e457-47f1-a19c-7e47283be6ef"]
+  },
+  {
+      "id": "as63-iaxk",
+      "name": "Integrated Dynamic Transit Operations (IDTO) Impact Assessment (IA)",
+      "lastUpdate": 1584980991000,
+      "dhId": "scgc-as63-iaxk",
+      "dhLastUpdate": 1585238675000,
+      "dhSourceName": "scgc",
+      "dhProjects": ["cee5a2e2-3c69-4aca-a232-a67242f4d6b7"],
+      "dhDataTypes": []
+  },
+  {
+      "id": "hk7z-wi42",
+      "name": "Prototype Operational Data Environment (P-ODE)",
+      "lastUpdate": 1584980989000,
+      "dhId": "scgc-hk7z-wi42",
+      "dhLastUpdate": 1585238675000,
+      "dhSourceName": "scgc",
+      "dhProjects": [],
+      "dhDataTypes": []
+  }
+]

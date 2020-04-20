@@ -3,35 +3,35 @@
     <div class="cdh_column cdh_column_max-width-tablet">
       <h2>Add Project</h2>
       <div v-if="processingError || error" :class="processingError || error ? 'cdh_message-alert':''">
-        <span>{{processingMessage + message}}</span>
+        <span id="id-project-error-message">{{processingMessage + message}}</span>
       </div>
       <div v-if="processing" :class="processing ? 'cdh_message-action':''">
-        <span>{{message}}</span>
+        <span id="id-project-processing-message">{{message}}</span>
       </div>
       <hr v-if="processing || error">
       <div class="cdh_message">
         <p>Type the word "Add" in the next input box and press the "Add" button to confirm.</p>
       </div>
       <div :class="invalidConfirmation ? 'cdh_row cdh_input cdh_input-alert' : 'cdh_row cdh_input'">
-        <input type="text" v-model="confirmation" placeholder="Confirmation...">
-        <button v-on:click="addClicked">Add</button>
-        <button v-on:click="cancelClicked">Cancel</button>
+        <input id="id-project-input-confirmation" type="text" v-model="confirmation" placeholder="Confirmation...">
+        <button id="id-project-button-add" v-on:click="addClicked">Add</button>
+        <button id="id-project-button-cancel" v-on:click="cancelClicked">Cancel</button>
       </div>
       <hr>
       <div class="cdh_row cdh_row_align-center cdh_input">
-        <input type="checkbox" v-model="newProject.isEnabled">
-        <label>Enabled</label>
+        <input id="id-project-enabled" type="checkbox" v-model="newProject.isEnabled">
+        <label id="id-project-enabled-label" for="id-project-enabled">Enabled</label>
       </div>
       <div class="cdh_row">
         <div class="cdh_column cdh_input" :class="invalidName ? 'cdh_input-alert' : ''">
-          <label for="id-project-name">Name</label>
+          <label id="id-project-name-label" for="id-project-name">Name</label>
           <input type="text" v-model="newProject.name" id="id-project-name" placeholder="Project name...">
         </div>
       </div>
       <div class="cdh_row">
         <div class="cdh_column cdh_input">
-          <label for="id-project-description">Description</label>
-          <textarea v-model="newProject.description"></textarea>
+          <label id="id-project-description-label" for="id-project-description">Description</label>
+          <textarea id="id-project-description" v-model="newProject.description"></textarea>
         </div>
       </div>
     </div>

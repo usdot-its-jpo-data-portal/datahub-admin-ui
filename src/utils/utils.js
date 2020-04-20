@@ -30,5 +30,20 @@ export default {
         dataAsset.dhProjects[i] = prj[0];
       }
       return dataAsset;
+    },
+    resolveDataTypes(dataAsset, dataTypes) {
+      if (!dataAsset || !dataAsset.dhDataTypes || dataAsset.dhDataTypes.length == 0  ) {
+        return dataAsset;
+      }
+
+      for(let i=0; i<dataAsset.dhDataTypes.length; i++){
+        let dtId = dataAsset.dhDataTypes[i];
+        let dt = dataTypes.filter(x => x.id == dtId )
+        if (dt.length == 0) {
+          continue;
+        }
+        dataAsset.dhDataTypes[i] = dt[0];
+      }
+      return dataAsset;
     }
 }
