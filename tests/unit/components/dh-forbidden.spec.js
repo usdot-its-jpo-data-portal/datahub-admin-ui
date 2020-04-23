@@ -11,7 +11,6 @@ describe('dh-forbidden.vue', () =>{
   });
   it('Expect to have lock icon with title Forbidden', () => {
     const wrapper = shallowMount(DHForbidden, {attachTo: document.body});
-    console.log(wrapper.html());
     let item = wrapper.find('mdlock-stub');
     expect(item.attributes('title')).to.equal('Forbidden');
   });

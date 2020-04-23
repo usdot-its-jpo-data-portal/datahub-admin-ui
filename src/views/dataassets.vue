@@ -7,7 +7,7 @@
           <input :disabled="forbidden" v-if="isVisible" type="search" name="dataassets-search" id="id-dataassets-search" v-model="dataAssetsFilter" placeholder="Filter data assets...">
         </div>
         <div class="cdh_row cdh_input">
-          <label id="id-number-dataAssets" :key="refreshCounter">Data Assets: {{this.$store.state.numberOfDataAssets}}</label>
+          <label v-if="isVisible" id="id-number-dataAssets" :key="refreshCounter">Data Assets: {{this.$store.state.numberOfDataAssets}}</label>
         </div>
       </div>
     </div>

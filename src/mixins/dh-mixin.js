@@ -8,6 +8,7 @@ export default {
       this.$store.commit('setSelectedDataAsset', null);
       this.$store.commit('setSelectedProject', null);
       this.$store.commit('setForbidden', false);
+      this.$store.commit('setSelectedDataType', null);
     }
   }
 }

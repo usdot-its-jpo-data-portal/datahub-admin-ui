@@ -60,7 +60,6 @@ describe('dh-header.vue', () =>{
   it('Expect to have input for the token', () => {
     const wrapper = shallowMount(DHDataAsset, {localVue, router, mocks: { $store }});
     let item = wrapper.find('#id-authorization-token');
-    console.log(item.html());
     expect(item.is('input')).to.be.true;
     expect(item.attributes('type')).to.equal('password');
   });
