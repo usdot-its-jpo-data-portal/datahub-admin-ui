@@ -1,0 +1,23 @@
+[
+  {
+      "id": "cd9a0b8c-e457-47f1-a19c-7e47283be6ef",
+      "name": "Data Type 1",
+      "description": "Description for Data Type 1",
+      "lastModified": 1587431767000,
+      "isEnabled": true
+  },
+  {
+      "id": "70edad20-4bb8-4037-a5d3-229cc3fad488",
+      "name": "Data Type 2",
+      "description": "Description for Data Type 2",
+      "lastModified": 1587431802000,
+      "isEnabled": true
+  },
+  {
+      "id": "09770deb-6f56-4e05-8c70-d11c32e99de1",
+      "name": "Data Type 3",
+      "description": "Description for Data Type 3",
+      "lastModified": 1587431827000,
+      "isEnabled": true
+  }
+]

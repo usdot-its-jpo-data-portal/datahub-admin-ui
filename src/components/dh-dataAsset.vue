@@ -30,6 +30,17 @@
         </template>
       </div>
     </div>
+    <div class="cdh_row">
+      <div class="cdh_column">
+        <DHField label="Data Types" :value="''" size="medium" weight="normal" color="black" />
+        <template v-if="data.dhDataTypes && data.dhDataTypes.length>0">
+            <DHField  v-for="(dt, index) in data.dhDataTypes" :key="index" label="-" :value="dt.name" size="small" weight="normal"/>
+        </template>
+        <template v-else>
+            <DHField label="" :value="'[None]'" size="small" weight="normal" color="lighgray"/>
+        </template>
+      </div>
+    </div>
   </div>
 </template>
 <script>

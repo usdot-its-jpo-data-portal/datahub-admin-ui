@@ -22,6 +22,9 @@
                     <router-link aria-controls="dh-nav1" to="/projects" exact-active-class="router-link-exact-active" exact>Projects</router-link>
                   </li>
                   <li class="usa-nav__primary-item">
+                    <router-link aria-controls="dh-nav1" to="/datatypes" exact-active-class="router-link-exact-active" exact>Data Types</router-link>
+                  </li>
+                  <li class="usa-nav__primary-item">
                     <div class="dh-header-nav_token">
                       <label for="id-authorization-token">Token</label>
                       <input type="password" v-model="authToken" @keyup.enter="reloadData" name="authorization-token" id="id-authorization-token" placeholder="Authorization token...">

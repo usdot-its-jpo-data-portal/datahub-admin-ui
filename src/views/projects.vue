@@ -8,7 +8,7 @@
           <input :disabled="forbidden" v-if="isVisible" type="search" name="projects-search" id="id-projects-search" v-model="projectsFilter" placeholder="Filter projects...">
         </div>
         <div class="cdh_row cdh_input">
-          <label id="id-number-projects" :key="refreshCounter">Projects: {{this.$store.state.numberOfProjects}}</label>
+          <label v-if="isVisible" id="id-number-projects" :key="refreshCounter">Projects: {{this.$store.state.numberOfProjects}}</label>
         </div>
       </div>
     </div>

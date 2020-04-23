@@ -51,6 +51,32 @@ if (!process || process.env.NODE_ENV !== 'test') {
         components: { projects: () => import('../views/projects/projects_update.vue')}
       }
     ]
+  },
+  {
+    path: '/datatypes',
+    components: { default: () => import('../views/datatypes.vue')},
+    children: [
+      {
+        path: '',
+        name: 'datatypes-home',
+        components: { datatypes: () => import('../views/datatypes/datatypes_home.vue')}
+      },
+      {
+        path: 'add',
+        name: 'datatypes-add',
+        components: { datatypes: () => import('../views/datatypes/datatypes_add.vue')}
+      },
+      {
+        path: 'remove',
+        name: 'datatypes-remove',
+        components: { datatypes: () => import('../views/datatypes/datatypes_remove.vue')}
+      },
+      {
+        path: 'update',
+        name: 'datatypes-update',
+        components: { datatypes: () => import('../views/datatypes/datatypes_update.vue')}
+      }
+    ]
   }
 ]
 

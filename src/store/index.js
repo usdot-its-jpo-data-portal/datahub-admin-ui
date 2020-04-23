@@ -22,7 +22,11 @@ export default new Vuex.Store({
     selectedProject: null,
     projectsFilter: '',
     numberOfProjects: 0,
-    forbidden: false
+    forbidden: false,
+    dataTypes: [],
+    selectedDataType: null,
+    dataTypesFilter: '',
+    numberOfDataTypes: 0
   },
   mutations: {
     setIsMobile(state, val) {
@@ -69,6 +73,18 @@ export default new Vuex.Store({
     },
     setForbidden(state, val) {
       state.forbidden = val;
+    },
+    setDataTypes(state, val) {
+      state.dataTypes = val;
+    },
+    setSelectedDataType(state, val) {
+      state.selectedDataType = val;
+    },
+    setDataTypesFilter(state, val) {
+      state.dataTypesFilter = val;
+    },
+    setNumberOfDataTypes(state, val) {
+      state.numberOfDataTypes = val;
     }
   },
   actions: {
@@ -101,15 +117,25 @@ export default new Vuex.Store({
         url: '/api/v1/configurations/projects'
       });
 
-      Promise.all([dataAssetsCall, projectsCall])
+      const dataTypesCall = axios({
+        method: 'GET',
+        headers: headers,
+        crossDomain: true,
+        url: '/api/v1/configurations/datatypes'
+      });
+
+      Promise.all([dataAssetsCall, projectsCall, dataTypesCall])
       .then( response => {
         let dataAssetsResp = response[0];
         let projectsResp = response[1];
-        if (Utils.validResponse(dataAssetsResp) && Utils.validResponse(projectsResp)) {
+        let dataTypesResp = response[2];
+        if (Utils.validResponse(dataAssetsResp) && Utils.validResponse(projectsResp) && Utils.validResponse(dataTypesResp)) {
           commit('setProjects', projectsResp.data.result);
+          commit('setDataTypes', dataTypesResp.data.result);
           let das = dataAssetsResp.data.result.slice();
           for(let i=0; i<das.length; i++) {
             das[i] = Utils.resolveProjects(das[i],state.projects);
+            das[i] = Utils.resolveDataTypes(das[i],state.dataTypes);
           }
           commit('setDataAssets', das);
         } else {
@@ -265,6 +291,120 @@ export default new Vuex.Store({
       };
       axios
       .post(`/api/v1/configurations/projects`, transacData.data, options)
+      .then( response => {
+        if (!Utils.validResponse(response)) {
+          let msg = Utils.getErrorMessages(response);
+          commit('setProcessingError', true);
+          commit('setProcessingMessage', msg);
+        }
+        commit('setIsProcessing', false);
+      })
+      .catch( (error) => {
+        commit('setProcessingError', true);
+        commit('setProcessingMessage', error);
+        commit('setIsProcessing', false);
+      })
+    },
+    getDataTypes: function({commit, state}) {
+      commit('setForbidden', false);
+      if (state.auth_token == '') {
+        commit('setForbidden', true);
+        return;
+      }
+      commit('setProcessingId', 'GET-DATATYPES');
+      commit('setIsProcessing', true);
+      commit('setProcessingError', false);
+      commit('setProcessingMessage', 'Processing...')
+      commit('setDataTypes', []);
+
+      let options = {
+        headers: { 'Content-Type':'application/json', 'DHTOKEN':state.auth_token }
+      }
+
+      axios
+      .get('/api/v1/configurations/datatypes', options)
+      .then( response => {
+        if (Utils.validResponse(response)) {
+          let pData = [...response.data.result];
+          pData.sort((a,b) => {
+            if (a.name >= b.name) {
+              return 1;
+            }
+            return -1;
+          });
+          commit('setDataTypes', pData);
+        } else {
+          let msg = Utils.getErrorMessages(response);
+          commit('setProcessingError', true);
+          commit('setProcessingMessage', msg)
+        }
+        commit('setIsProcessing', false);
+      })
+      .catch( (error) => {
+        commit('setForbidden', error.response.status == 403)
+        commit('setProcessingError', true);
+        commit('setProcessingMessage',  error.response.statusText);
+        commit('setIsProcessing', false);
+      })
+    },
+    updateDataType({commit, state}, transacData) {
+      commit('setProcessingId', transacData.id);
+      commit('setIsProcessing', true);
+      commit('setProcessingError', false);
+      commit('setProcessingMessage', 'Processing...')
+
+      let options =  { headers: {'Content-Type':'application/json', 'DHTOKEN': state.auth_token}};
+
+      axios
+      .put('/api/v1/configurations/datatypes', transacData.data, options)
+      .then( response => {
+        if (!Utils.validResponse(response)) {
+          let msg = Utils.getErrorMessages(response);
+          commit('setProcessingError', true);
+          commit('setProcessingMessage', msg);
+        }
+        commit('setIsProcessing', false);
+      })
+      .catch( (error) => {
+        commit('setProcessingError', true);
+        commit('setProcessingMessage', error);
+        commit('setIsProcessing', false);
+      })
+    },
+    removeDataType({commit, state}, transacData) {
+      commit('setProcessingId', transacData.id);
+      commit('setIsProcessing', true);
+      commit('setProcessingError', false);
+      commit('setProcessingMessage', 'Processing...')
+
+      let options =  { headers: {'Content-Type':'application/json', 'DHTOKEN': state.auth_token}};
+
+      axios
+      .delete(`/api/v1/configurations/datatypes/${transacData.data.id}`, options)
+      .then( response => {
+        if (!Utils.validResponse(response)) {
+          let msg = Utils.getErrorMessages(response);
+          commit('setProcessingError', true);
+          commit('setProcessingMessage', msg);
+        }
+        commit('setIsProcessing', false);
+      })
+      .catch( (error) => {
+        commit('setProcessingError', true);
+        commit('setProcessingMessage', error);
+        commit('setIsProcessing', false);
+      })
+    },
+    addDataType({commit, state}, transacData) {
+      commit('setProcessingId', transacData.id);
+      commit('setIsProcessing', true);
+      commit('setProcessingError', false);
+      commit('setProcessingMessage', 'Processing...')
+
+      let options =  { headers: {'Content-Type':'application/json', 'DHTOKEN': state.auth_token}};
+
+      axios
+      .post(`/api/v1/configurations/datatypes`, transacData.data, options)
       .then( response => {
         if (!Utils.validResponse(response)) {
           let msg = Utils.getErrorMessages(response);

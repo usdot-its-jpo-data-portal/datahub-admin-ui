@@ -52,6 +52,8 @@ docker run --rm -d -p 8098:80 \
   * Initial version
     * Listing Data Assets
     * Manage Projects
+* 1.1.0
+  * Data Types support
 
 
 ## Contact information
