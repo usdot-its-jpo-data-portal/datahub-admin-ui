@@ -1,0 +1,117 @@
+@mixin mix-dh-engagementpopup__controls-color {
+  &.dh-engpop-color-white { color: $g-color-white; }
+  &.dh-engpop-shadow-white { text-shadow: 0px 0px 2px $g-color-white; }
+  &.dh-engpop-color-black { color: $g-color-black; }
+  &.dh-engpop-shadow-black { text-shadow: 0px 0px 2px $g-color-black; }
+  &.dh-engpop-color-navy { color: $g-color-navy; }
+  &.dh-engpop-shadow-navy { text-shadow: 0px 0px 2px $g-color-navy; }
+  &.dh-engpop-color-gray { color: $g-color-gray; }
+  &.dh-engpop-shadow-gray { text-shadow: 0px 0px 2px $g-color-gray; }
+  &.dh-engpop-color-darkgray { color: $g-color-dark-gray; }
+  &.dh-engpop-shadow-darkgray { text-shadow: 0px 0px 2px $g-color-dark-gray; }
+  &.dh-engpop-color-green { color: $g-color-green; }
+  &.dh-engpop-shadow-green { text-shadow: 0px 0px 2px $g-color-green; }
+  &.dh-engpop-color-red { color: $g-color-red; }
+  &.dh-engpop-shadow-red { text-shadow: 0px 0px 2px $g-color-red; }
+  &.dh-engpop-color-darkred { color: $g-color-dark-red; }
+  &.dh-engpop-shadow-darkred { text-shadow: 0px 0px 2px $g-color-dark-red; }
+  &.dh-engpop-color-blue { color: $g-color-blue; }
+  &.dh-engpop-shadow-blue { text-shadow: 0px 0px 2px $g-color-blue; }
+  &.dh-engpop-color-orange { color: $g-color-orange; }
+  &.dh-engpop-shadow-orange { text-shadow: 0px 0px 2px $g-color-orange; }
+}
+
+@import './dh-engagementpopup.scss';
+.engagementPopups_wrapper {
+  background-color: $g-color-background;
+  .engagementPopups_controls {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: units(3);
+    padding-top: units(1);
+    padding-left: units(1.5);
+    padding-bottom: units(0.5);
+  }
+  .engpo__controls-color {
+    select {
+      border: none;
+      background: transparent;
+    }
+    span {
+      color: transparent;
+      margin-left: units(0.5);
+      border-radius: 50%;
+      width: auto;
+      height: 13px;
+      border: solid 1px $g-color-dark-gray;
+    }
+    label {
+      margin-left: units(3);
+      font-size: units(1.5);
+      color: $g-color-dark-gray;
+    }
+  }
+  .engpo__html-preview-wrapper {
+    margin: units(1);
+    background-color: $g-color-white;
+    padding: units(0.5);
+    label {
+      color: $g-color-dark-gray;
+      font-size: units(1.5);
+      flex: 0 1 auto;
+    }
+    .engpo__html-preview {
+      border: dashed 1px $g-color-gray;
+    }
+    .engpo__preview-close {
+      position: relative;
+      top: 25px;
+      margin: 4px;
+      cursor: pointer;
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-end;
+      z-index: 1000;
+      span {
+        color: $g-color-black;
+        text-shadow: 0px 0px 2px $g-color-white;
+        font-family: 'Courier New', Courier, monospace;
+        margin-right: 4px;
+        @include mix-dh-engagementpopup__controls-color();
+      }
+    }
+
+    .engpo__preview-noshow {
+      position: relative;
+      right: 0;
+      bottom: 30px;
+      margin: 4px;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      z-index: 1000;
+      span {
+        font-size: 12px;
+        color: $g-color-black;
+        text-shadow: 0px 0px 2px $g-color-white;
+        margin-left: 4px;
+        @include mix-dh-engagementpopup__controls-color();
+      }
+      input {
+        margin: 0;
+      }
+    }
+  }
+  .engpo__html-editor {
+    textarea {
+      height: units('card');
+      width: 100%;
+      resize: vertical;
+      word-wrap: none;
+      font-size: units(2);
+    }
+  }
+}
