@@ -1,0 +1,64 @@
+.dh-engagementpopup__wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  width: units('tablet-lg');
+  margin: units(2);
+  border: solid 1px $g-color-gray;
+  border-radius: 5px;
+  padding: units(1);
+  background-color: $g-color-white;
+  .dh-engagementpopup_row {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-content: center;
+    &.dh-engagementpopup_space-between {
+      justify-content: space-between;
+    }
+  }
+  .dh-engagementpopup_preview-wrapper {
+    .dh-engagementpopup_preview-content {
+      border: dashed 1px $g-color-gray;
+    }
+
+    .dh-engagementpopup_preview-close {
+      position: relative;
+      top: 25px;
+      margin: 4px;
+      cursor: pointer;
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-end;
+      z-index: 1000;
+      span {
+        color: $g-color-black;
+        text-shadow: 0px 0px 2px $g-color-white;
+        font-family: 'Courier New', Courier, monospace;
+        margin-right: 4px;
+        @include mix-dh-engagementpopup__controls-color();
+      }
+    }
+
+    .dh-engagementpopup_preview-noshow {
+      position: relative;
+      right: 0;
+      bottom: 30px;
+      margin: 4px;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      z-index: 1000;
+      span {
+        font-size: 12px;
+        color: $g-color-black;
+        text-shadow: 0px 0px 2px $g-color-white;
+        margin-left: 4px;
+        @include mix-dh-engagementpopup__controls-color();
+      }
+      input {
+        margin: 0;
+      }
+    }
+  }
+}

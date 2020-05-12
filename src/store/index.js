@@ -26,7 +26,11 @@ export default new Vuex.Store({
     dataTypes: [],
     selectedDataType: null,
     dataTypesFilter: '',
-    numberOfDataTypes: 0
+    numberOfDataTypes: 0,
+    engagementPopups: [],
+    selectedEngagementPopup: null,
+    engagementPopupFilter: '',
+    numberOfEngagementPopups: 0
   },
   mutations: {
     setIsMobile(state, val) {
@@ -85,6 +89,18 @@ export default new Vuex.Store({
     },
     setNumberOfDataTypes(state, val) {
       state.numberOfDataTypes = val;
+    },
+    setEngagementPopups(state, val) {
+      state.engagementPopups = val;
+    },
+    setSelectedEngagementPopup(state, val) {
+      state.selectedEngagementPopup = val;
+    },
+    setEngagementPopupFilter(state, val) {
+      state.engagementPopupFilter = val;
+    },
+    setNumberOfEngagementPopups(state, val) {
+      state.numberOfEngagementPopups = val;
     }
   },
   actions: {
@@ -405,6 +421,123 @@ export default new Vuex.Store({
 
       axios
       .post(`/api/v1/configurations/datatypes`, transacData.data, options)
+      .then( response => {
+        if (!Utils.validResponse(response)) {
+          let msg = Utils.getErrorMessages(response);
+          commit('setProcessingError', true);
+          commit('setProcessingMessage', msg);
+        }
+        commit('setIsProcessing', false);
+      })
+      .catch( (error) => {
+        commit('setProcessingError', true);
+        commit('setProcessingMessage', error);
+        commit('setIsProcessing', false);
+      })
+    },
+    getEngagementPopups: function({commit, state}) {
+      commit('setForbidden', false);
+      if (state.auth_token == '') {
+        commit('setForbidden', true);
+        return;
+      }
+      commit('setProcessingId', 'GET-ENGAGEMENT-POPUPS');
+      commit('setIsProcessing', true);
+      commit('setProcessingError', false);
+      commit('setProcessingMessage', 'Processing...')
+      commit('setEngagementPopups', []);
+
+      let options = {
+        headers: { 'Content-Type':'application/json', 'DHTOKEN':state.auth_token }
+      }
+
+      axios
+      .get('/api/v1/configurations/engagementpopups', options)
+      .then( response => {
+        if (Utils.validResponse(response)) {
+          let pData = [...response.data.result];
+          pData.sort((a,b) => {
+            if (a.isActive > b.isActive) {
+              return -1;
+            }
+            if (a.name >= b.name) {
+              return -1;
+            }
+            return 1;
+          });
+          commit('setEngagementPopups', pData);
+        } else {
+          let msg = Utils.getErrorMessages(response);
+          commit('setProcessingError', true);
+          commit('setProcessingMessage', msg)
+        }
+        commit('setIsProcessing', false);
+      })
+      .catch( (error) => {
+        commit('setForbidden', error.response.status == 403)
+        commit('setProcessingError', true);
+        commit('setProcessingMessage',  error.response.statusText);
+        commit('setIsProcessing', false);
+      })
+    },
+    updateEngagementPopup({commit, state}, transacData) {
+      commit('setProcessingId', transacData.id);
+      commit('setIsProcessing', true);
+      commit('setProcessingError', false);
+      commit('setProcessingMessage', 'Processing...')
+
+      let options =  { headers: {'Content-Type':'application/json', 'DHTOKEN': state.auth_token}};
+
+      axios
+      .put('/api/v1/configurations/engagementpopups', transacData.data, options)
+      .then( response => {
+        if (!Utils.validResponse(response)) {
+          let msg = Utils.getErrorMessages(response);
+          commit('setProcessingError', true);
+          commit('setProcessingMessage', msg);
+        }
+        commit('setIsProcessing', false);
+      })
+      .catch( (error) => {
+        commit('setProcessingError', true);
+        commit('setProcessingMessage', error);
+        commit('setIsProcessing', false);
+      })
+    },
+    removeEngagementPopup({commit, state}, transacData) {
+      commit('setProcessingId', transacData.id);
+      commit('setIsProcessing', true);
+      commit('setProcessingError', false);
+      commit('setProcessingMessage', 'Processing...')
+
+      let options =  { headers: {'Content-Type':'application/json', 'DHTOKEN': state.auth_token}};
+
+      axios
+      .delete(`/api/v1/configurations/engagementpopups/${transacData.data.id}`, options)
+      .then( response => {
+        if (!Utils.validResponse(response)) {
+          let msg = Utils.getErrorMessages(response);
+          commit('setProcessingError', true);
+          commit('setProcessingMessage', msg);
+        }
+        commit('setIsProcessing', false);
+      })
+      .catch( (error) => {
+        commit('setProcessingError', true);
+        commit('setProcessingMessage', error);
+        commit('setIsProcessing', false);
+      })
+    },
+    addEngagementPopup({commit, state}, transacData) {
+      commit('setProcessingId', transacData.id);
+      commit('setIsProcessing', true);
+      commit('setProcessingError', false);
+      commit('setProcessingMessage', 'Processing...')
+
+      let options =  { headers: {'Content-Type':'application/json', 'DHTOKEN': state.auth_token}};
+
+      axios
+      .post(`/api/v1/configurations/engagementpopups`, transacData.data, options)
       .then( response => {
         if (!Utils.validResponse(response)) {
           let msg = Utils.getErrorMessages(response);
