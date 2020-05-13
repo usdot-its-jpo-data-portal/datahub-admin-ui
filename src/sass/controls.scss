@@ -102,7 +102,7 @@
   }
 }
 .cdh_input-alert {
-  input, select, ul {
+  input, select, ul, textarea {
     border: solid 1px $g-color-red;
     border-radius: units(0.5);
   }

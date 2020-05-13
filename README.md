@@ -54,6 +54,8 @@ docker run --rm -d -p 8098:80 \
     * Manage Projects
 * 1.1.0
   * Data Types support
+* 1.2.0
+  * Engagement Popups support
 
 
 ## Contact information

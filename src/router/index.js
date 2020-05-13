@@ -77,6 +77,32 @@ if (!process || process.env.NODE_ENV !== 'test') {
         components: { datatypes: () => import('../views/datatypes/datatypes_update.vue')}
       }
     ]
+  },
+  {
+    path: '/engagementpopups',
+    components: { default: () => import('../views/engagementPopups.vue')},
+    children: [
+      {
+        path: '',
+        name: 'engagementPopups-home',
+        components: { engagementPopups: () => import('../views/engagementPopups/engagementPopups_home.vue')}
+      },
+      {
+        path: 'add',
+        name: 'engagementPopups-add',
+        components: { engagementPopups: () => import('../views/engagementPopups/engagementPopups_add.vue')}
+      },
+      {
+        path: 'remove',
+        name: 'engagementPopups-remove',
+        components: { engagementPopups: () => import('../views/engagementPopups/engagementPopups_remove.vue')}
+      },
+      {
+        path: 'update',
+        name: 'engagementPopups-update',
+        components: { engagementPopups: () => import('../views/engagementPopups/engagementPopups_update.vue')}
+      }
+    ]
   }
 ]
 
