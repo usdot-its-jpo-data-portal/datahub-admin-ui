@@ -17,12 +17,16 @@
     <div class="dh-engagementpopup_preview-wrapper">
       <DHField label="Preview" :value="''" size="small" weight="normal" color="black" shadow="false" />
       <div v-if="!hideControls" class="dh-engagementpopup_preview-close">
-        <span id="id-control-close" :class="getColorClass+' '+getShadowClass">x</span>
+        <a class="engpopup_close" :style="`;background-color:${backgroundColor};`" >
+          <MDClose id="id-control-close" title="Close Engagement Popup" :fillColor="data.controlsColor" :size="18"/>
+        </a>
       </div>
       <div v-html="data.content" class="dh-engagementpopup_preview-content"></div>
       <div v-if="!hideControls" class="dh-engagementpopup_preview-noshow">
-        <input id="id-control-noshow" type="checkbox" name="">
-        <span id="id-control-noshow-text" :class="getColorClass+' '+getShadowClass">Click here if you would like to stop seeing this message</span>
+        <div class="dh-engagementpopup_preview-noshow-content" :style="`background-color:${backgroundColor};`">
+          <input id="id-control-noshow" type="checkbox" name="">
+          <span id="id-control-noshow-text" :style="`color:${data.controlsColor};`">Click here if you would like to stop seeing this message</span>
+        </div>
       </div>
     </div>
     <div class="dh-engagementpopup_data-description">
@@ -44,14 +48,21 @@ import DHMixin from '@/mixins/dh-mixin.js';
 import DHField from '@/components/dh-field'
 import PlaylistEdit from 'vue-material-design-icons/PlaylistEdit'
 import TrashCanOutline  from 'vue-material-design-icons/TrashCanOutline'
+import MDClose  from 'vue-material-design-icons/Close'
 export default {
   name: 'DHEngagementPopup',
   props: ['data','hideControls','actionCallback'],
   mixins: [DHMixin],
+  data: function() {
+    return {
+      opacity: 0.6
+    }
+  },
   components: {
     DHField,
     PlaylistEdit,
-    TrashCanOutline
+    TrashCanOutline,
+    MDClose
   },
   computed: {
     getColorClass: {
@@ -65,7 +76,30 @@ export default {
         let val = (!this.data || !this.data.controlsShadow) ? 'white' : this.data.controlsShadow;
         return this.getEngPopShadowClass(val);
       }
+    },
+    backgroundColor: {
+      get: function() {
+        let result = `rgba(0,0,0,${this.opacity})`;
+        if (!this.data) {
+          return result;
+        }
+        switch(this.data.controlsShadow) {
+          case 'black': return result;
+          case 'white': return `rgba(255,255,255,${this.opacity})`;
+          case 'navy': return `rgba(22,46,81,${this.opacity})`;
+          case 'gray': return `rgba(204,204,204,${this.opacity})`;
+          case 'darkgray': return `rgba(128,128,128,${this.opacity})`;
+          case 'green': return `rgba(0,128,0,${this.opacity})`;
+          case 'red': return `rgba(255,0,0,${this.opacity})`;
+          case 'darkred': return `rgba(217,0,0,${this.opacity})`;
+          case 'blue': return `rgba(0,0,255,${this.opacity})`;
+          case 'orange': return `rgba(255,165,0,${this.opacity})`;
+          case 'transparent': return `rgba(0,0,0,0)`;
+        }
+        return result;
+      }
     }
+
   }
 }
 </script>
