@@ -38,13 +38,10 @@ describe('dh-engagementpopup.vue', () =>{
     let item = wrapper.find('#id-cb-remove');
     expect(item.is('a')).to.be.true;
   });
-  it('Expect to have a controls to close having color and shadow classes', () => {
+  it('Expect to have icon for the close control', () => {
     const wrapper = shallowMount(DHEngagementPopup, {attachTo: document.body, propsData: { data: data }});
     let item = wrapper.find('#id-control-close');
-    expect(item.is('span')).to.be.true;
-    let classes = item.attributes('class');
-    expect(classes.includes('dh-engpop-color-'+data.controlsColor)).to.be.true;
-    expect(classes.includes('dh-engpop-shadow-'+data.controlsShadow)).to.be.true;
+    expect(item.is('mdclose-stub')).to.be.true;
   });
   it('Expect to have a checkbox to not show the popup again', () => {
     const wrapper = shallowMount(DHEngagementPopup, {attachTo: document.body, propsData: { data: data }});
@@ -56,9 +53,6 @@ describe('dh-engagementpopup.vue', () =>{
     const wrapper = shallowMount(DHEngagementPopup, {attachTo: document.body, propsData: { data: data }});
     let item = wrapper.find('#id-control-noshow-text');
     expect(item.is('span')).to.be.true;
-    let classes = item.attributes('class');
-    expect(classes.includes('dh-engpop-color-'+data.controlsColor)).to.be.true;
-    expect(classes.includes('dh-engpop-shadow-'+data.controlsShadow)).to.be.true;
     expect(item.text().includes('Click here if you would like to stop seeing this message')).to.be.true;
   });
   it('Expect to render description', () => {

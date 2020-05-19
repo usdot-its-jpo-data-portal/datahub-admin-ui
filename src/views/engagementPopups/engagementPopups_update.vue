@@ -66,12 +66,16 @@
           <div class="engpo__html-preview-wrapper">
             <label id="id-engagementPopup-preview-label" for="id-engagementPopup-preview">Preview</label>
             <div class="engpo__preview-close">
-              <span id="id-engagementPopup-controls-close" :class="getColorClass+' '+getShadowClass">x</span>
+              <a class="engpopup_close" :style="`;background-color:${backgroundColor};`" >
+                <MDClose title="Close Engagement Popup" :fillColor="selectedEngagementPopup.controlsColor" :size="18"/>
+              </a>
             </div>
             <div id="id-engagementPopup-preview" class="engpo__html-preview" v-html="selectedEngagementPopup.content"></div>
             <div class="engpo__preview-noshow">
-              <input id="id-engagementPopup-controls-noshow" type="checkbox" name="">
-              <span id="id-engagementPopup-controls-noshow-text" :class="getColorClass+' '+getShadowClass">Click here if you would like to stop seeing this message</span>
+              <div class="engpo__preview-noshow-content" :style="`background-color:${backgroundColor};`">
+                <input id="id-engagementPopup-controls-noshow" type="checkbox" name="">
+                <span id="id-engagementPopup-controls-noshow-text" :style="`color:${selectedEngagementPopup.controlsColor};`">Click here if you would like to stop seeing this message</span>
+              </div>
             </div>
           </div>
         </div>
@@ -83,10 +87,12 @@
 <script>
 import DHMixin from '@/mixins/dh-mixin.js';
 import DHField from '@/components/dh-field';
+import MDClose  from 'vue-material-design-icons/Close'
 export default {
   name: 'EngagementPopupAdd',
   components: {
-    DHField
+    DHField,
+    MDClose
   },
   mixins: [DHMixin],
   data: function() {
@@ -97,7 +103,8 @@ export default {
       invalidConfirmation: false,
       invalidName: false,
       invalidContent: false,
-      selectedEngagementPopup: null
+      selectedEngagementPopup: null,
+      opacity: 0.6
     }
   },
   created: function() {
@@ -132,6 +139,28 @@ export default {
       get: function() {
         let val = (!this.selectedEngagementPopup || !this.selectedEngagementPopup.controlsShadow) ? 'white' : this.selectedEngagementPopup.controlsShadow;
         return this.getEngPopShadowClass(val);
+      }
+    },
+    backgroundColor: {
+      get: function() {
+        let result = `rgba(0,0,0,${this.opacity})`;
+        if (!this.selectedEngagementPopup) {
+          return result;
+        }
+        switch(this.selectedEngagementPopup.controlsShadow) {
+          case 'black': return result;
+          case 'white': return `rgba(255,255,255,${this.opacity})`;
+          case 'navy': return `rgba(22,46,81,${this.opacity})`;
+          case 'gray': return `rgba(204,204,204,${this.opacity})`;
+          case 'darkgray': return `rgba(128,128,128,${this.opacity})`;
+          case 'green': return `rgba(0,128,0,${this.opacity})`;
+          case 'red': return `rgba(255,0,0,${this.opacity})`;
+          case 'darkred': return `rgba(217,0,0,${this.opacity})`;
+          case 'blue': return `rgba(0,0,255,${this.opacity})`;
+          case 'orange': return `rgba(255,165,0,${this.opacity})`;
+          case 'transparent': return `rgba(0,0,0,0)`;
+        }
+        return result;
       }
     }
   },
