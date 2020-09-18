@@ -56,6 +56,8 @@ docker run --rm -d -p 8098:80 \
   * Data Types support
 * 1.2.0
   * Engagement Popups support
+* 1.3.0
+  * SonarCloud Integration
 
 
 ## Contact information
