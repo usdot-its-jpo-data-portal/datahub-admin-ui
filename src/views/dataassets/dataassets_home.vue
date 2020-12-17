@@ -66,10 +66,8 @@ export default {
       this.clearActionState();
       this.$store.commit('setSelectedDataAsset', data[0]);
 
-      switch(type.toLowerCase()) {
-        case 'update':
+      if(type.toLowerCase() == 'update') {
           this.$router.push({path:"/dataassets/update"});
-          break;
       }
     }
   }
